@@ -1,6 +1,5 @@
+import { AddColor } from "./component/AddColor";
 import "./App.css";
-import { Counter } from "./component/Counter";
-import { useState } from "react"
 
 
 export default function App() {
@@ -10,50 +9,38 @@ export default function App() {
   //JSX starts
   return (
     <div className="App">
-      <AddColor />
-
-
+      <Product />
+      {/* <AddColor /> */}
     </div>
   );
   //JSX ends
 }
 
+function Product() {
 
-function AddColor() {
-  const [color, setColor] = useState("skyblue")
+  const product = {
+    name: "Apple iPhone 13 (128GB)",
+    poster: "https://m.media-amazon.com/images/I/71GLMJ7TQiL._SX679_.jpg",
+    price: 51790,
+    rating: 5,
+    summary: "Cinematic mode adds shallow depth of field and shifts focus automatically in your videos"
 
-  const [colorList, setColorList] = useState(["orange", "red", 'pink', "purple"])
-
-  const styles = {
-    backgroundColor: color
   }
+
   return (
-    <div>
-      <div className="add-color">
-        <input style={styles} type="text" onChange={(event) => setColor(event.target.value)} />
-        <button
-          // copy the colorList and add newColor
-          onClick={() => setColorList([...colorList, color])
-          }
-        >Add Color</button>
+    <div className="product-container">
+      <img className="product-poster" src={product.poster} alt={product.name} />
+      <div className="product-spec">
+        <h2 className="product-name">{product.name}</h2>
+        <p className="product-rating">⭐{product.rating}</p>
       </div>
-      {colorList.map((clr) => (
-        <ColorBox color={clr} />
-      ))}
-      {/* <ColorBox color={colorList[1]} /> */}
+      <p className="product-summary">{product.summary}</p>
+      <div className="product-align">
+        <p className="product-price">Price- Rs. {product.price}</p>
+        <button>Add To Cart</button>
+      </div>
+
     </div>
   )
 }
 
-
-function ColorBox({ color }) {
-  const styles = {
-    backgroundColor: color,
-    width: "170px",
-    height: "20px",
-    marginTop: "5px",
-  }
-  return (
-    <div style={styles}></div>
-  )
-}

@@ -5,3 +5,29 @@
 .add-color {
   display: flex;
 }
+
+.product-container {
+  width: 350px;
+  height: 700px;
+}
+
+.product-poster {
+  width: 350px;
+  object-fit: contain;
+}
+
+.product-spec {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.product-align {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-summary {
+  text-align: justify;
+}
