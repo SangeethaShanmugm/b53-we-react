@@ -1,0 +1,55 @@
+{/* {people.map((person) => (
+        <Welcome name={person} />
+      ))} */}
+      {/* <Welcome name="Raja" age="20" />
+      <Welcome name="Dinesh" age="22" />
+      <Welcome name="Babu" age="25" /> */}
+
+
+      
+//JSX  => Javascript XML
+//class => reserved keyword
+//{} => template syntax
+//custom component
+// 1. First letter should be capital
+// 2. It should return JSX
+
+
+
+hooks => function 
+
+useState => const [state, setState] = useState(initialValue)
+
+const [like, setLike] = useState(10)
+
+state =>  current
+state of the art technology => top technology in current
+state of mind- currently in mind
+
+
+{/* <Counter />
+      <Counter />
+      <Counter /> */}
+      {/* {user.map((usr) => (
+        <Welcome nm={usr.name} ag={usr.age} />
+      ))} */}
+
+
+      const people = ["Raja", "Dinesh", "Babu"]; //Array of string
+  const user = [
+    {
+      name: "Raja",
+      age: "20",
+    },
+    {
+      name: "Dinesh",
+      age: "22",
+    },
+    {
+      name: "Babu",
+      age: "25",
+    },
+  ];
+  // console.log(user)
+
+  
