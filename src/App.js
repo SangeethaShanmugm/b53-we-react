@@ -1,6 +1,6 @@
 import { AddColor } from "./component/AddColor";
 import "./App.css";
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Link } from "react-router-dom"
 import { ProductList } from "./component/ProductList"
 
 export const INITIAL_PRODUCT_LIST = [
@@ -18,7 +18,7 @@ export const INITIAL_PRODUCT_LIST = [
     price: "₹1,34,900 ",
     rating: 3.5,
     summary:
-      " iPhone 15 Pro has a strong and light aerospace-grade titanium design with a textured matte-glass back. It also features a Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant.",
+      " iPhone 15 Pro has Link strong and light aerospace-grade titanium design with Link textured matte-glass back. It also features Link Ceramic Shield front that’s tougher than any smartphone glass. And it’s splash, water, and dust resistant.",
   },
   {
     name: "Samsung Galaxy S23 5G (256GB Storage)",
@@ -34,7 +34,7 @@ export const INITIAL_PRODUCT_LIST = [
     price: "₹1,00,000",
     rating: 5.0,
     summary:
-      "Create crystal-clear content worth sharing with Galaxy S23 Ultra’s 200MP camera — the highest camera resolution on a phone; Whether you’re posting or printing, Galaxy S23 Ultra always does the moment justice.",
+      "Create crystal-clear content worth sharing with Galaxy S23 Ultra’s 200MP camera — the highest camera resolution on Link phone; Whether you’re posting or printing, Galaxy S23 Ultra always does the moment justice.",
   },
   {
     name: "Apple AirPods Pro​",
@@ -90,9 +90,18 @@ export default function App() {
 
   return (
     <div className="App">
+      <nav>
+        <ul>
+          {/* Link change page without refresh */}
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/products">ProductList</Link></li>
+          <li><Link to="/add-color">AddColor</Link></li>
+        </ul>
+      </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
+        <Route path="/add-color" element={<AddColor />} />
       </Routes>
     </div>
   );
