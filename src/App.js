@@ -1,9 +1,9 @@
 import { AddColor } from "./component/AddColor";
 import "./App.css";
-import { Counter } from "./component/Counter";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom"
+import { ProductList } from "./component/ProductList"
 
-const INITIAL_PRODUCT_LIST = [
+export const INITIAL_PRODUCT_LIST = [
   {
     name: "iPhone 15 (128 GB)",
     poster: "https://m.media-amazon.com/images/I/71d7rfSl0wL._AC_UY218_.jpg",
@@ -87,51 +87,21 @@ const INITIAL_PRODUCT_LIST = [
 ];
 
 export default function App() {
-  const productList = INITIAL_PRODUCT_LIST
+
   return (
     <div className="App">
-      <div className="product-list">
-        {productList.map((pd, index) => (
-          <Product key={index} product={pd} />
-        ))}
-      </div>
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+      </Routes>
     </div>
   );
 
 }
 
-function Product({ product }) {
-  // true  => visible => block
-  // false => hide => none
-  const [show, setShow] = useState(true)
-
-  const summaryStyle = {
-    display: show ? "block" : "none"
-  }
-
-  const ratingStyle = {
-    color: product.rating > 4.5 ? "green" : "red"
-  }
+function Home() {
   return (
-    <div className="product-container">
-      <img className="product-poster" src={product.poster} alt={product.name} />
-      <div className="product-spec">
-        <h3 className="product-name">{product.name}</h3>
-        <h5 style={ratingStyle} className="product-rating">⭐{product.rating}</h5>
-      </div>
-
-      <button
-        onClick={() => setShow(!show)}
-      >Toggle description</button>
-
-      <p style={summaryStyle} className="product-summary">{product.summary}</p>
-      <div className="product-align">
-        <p className="product-price">Price- Rs. {product.price}</p>
-        <button>Add To Cart</button>
-      </div>
-      <Counter />
-    </div>
+    <h1>Welcome to Product Home Page</h1>
   )
 }
 
