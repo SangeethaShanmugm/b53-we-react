@@ -1,10 +1,12 @@
 import { Counter } from "./Counter";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
-export function Product({ product }) {
+export function Product({ product, id }) {
   // true  => visible => block
   // false => hide => none
   const [show, setShow] = useState(true);
+  const navigate = useNavigate()
 
   const summaryStyle = {
     display: show ? "block" : "none"
@@ -17,13 +19,14 @@ export function Product({ product }) {
     <div className="product-container">
       <img className="product-poster" src={product.poster} alt={product.name} />
       <div className="product-spec">
-        <h3 className="product-name">{product.name}</h3>
+        <h3 className="product-name">{product.name}-{id}</h3>
         <h5 style={ratingStyle} className="product-rating">⭐{product.rating}</h5>
       </div>
 
       <button
         onClick={() => setShow(!show)}
       >Toggle description</button>
+      <button onClick={() => navigate("/products/" + id)}>Info</button>
       {/* conditional Styling */}
       {/* <p style={summaryStyle} className="product-summary">{product.summary}</p> */}
 

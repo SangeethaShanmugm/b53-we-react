@@ -1,6 +1,6 @@
 import { AddColor } from "./component/AddColor";
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, useParams } from "react-router-dom"
 import { ProductList } from "./component/ProductList"
 
 export const INITIAL_PRODUCT_LIST = [
@@ -101,12 +101,22 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
+        <Route path="/products/:productid" element={<ProductDetails />} />
+
         <Route path="/add-color" element={<AddColor />} />
       </Routes>
     </div>
   );
 
 }
+
+function ProductDetails() {
+  const { productid } = useParams()
+  return (
+    <div>ProductDetails - {productid}</div>
+  )
+}
+
 
 function Home() {
   return (
