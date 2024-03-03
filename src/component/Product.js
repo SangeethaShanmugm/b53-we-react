@@ -1,6 +1,12 @@
 import { Counter } from "./Counter";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import IconButton from "@mui/material/IconButton";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoIcon from '@mui/icons-material/Info';
+import Button from '@mui/material/Button';
+
 
 export function Product({ product, id }) {
   // true  => visible => block
@@ -23,10 +29,29 @@ export function Product({ product, id }) {
         <h5 style={ratingStyle} className="product-rating">⭐{product.rating}</h5>
       </div>
 
-      <button
+      <IconButton
+        aria-label="toggleBtn"
+        color="primary"
         onClick={() => setShow(!show)}
-      >Toggle description</button>
-      <button onClick={() => navigate("/products/" + id)}>Info</button>
+      >
+        {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </IconButton>
+
+      {/* <button
+        onClick={() => setShow(!show)}
+      >Toggle description</button> */}
+
+
+      <IconButton
+        aria-label="toggleBtn"
+        color="primary"
+        onClick={() => navigate("/products/" + id)}
+      >
+        <InfoIcon />
+      </IconButton>
+
+
+      {/* <button onClick={() => navigate("/products/" + id)}>Info</button> */}
       {/* conditional Styling */}
       {/* <p style={summaryStyle} className="product-summary">{product.summary}</p> */}
 
@@ -35,7 +60,9 @@ export function Product({ product, id }) {
 
       <div className="product-align">
         <p className="product-price">Price- Rs. {product.price}</p>
-        <button>Add To Cart</button>
+        {/* <button>Add To Cart</button> */}
+        <Button color="success" variant="outlined">Add To Cart</Button>
+
       </div>
       <Counter />
     </div>

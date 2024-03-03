@@ -1,7 +1,19 @@
+import { useState } from "react"
 import { AddColor } from "./component/AddColor";
 import "./App.css";
-import { Routes, Route, Link, useParams } from "react-router-dom"
+import { Routes, Route, Link, useNavigate } from "react-router-dom"
 import { ProductList } from "./component/ProductList"
+import { Home } from "./component/Home";
+import { ProductDetails } from "./component/ProductDetails";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import ExampleContext from "./component/context/ExampleContext";
+
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -87,40 +99,64 @@ export const INITIAL_PRODUCT_LIST = [
 ];
 
 export default function App() {
+  //lifting the state up from child to parent => lifted from child to parent
+  const productList = INITIAL_PRODUCT_LIST;
+  const navigate = useNavigate()
+  const [mode, setMode] = useState("light")
+
+  //1. creating = createContext
+  //2. Publisher = provider =context.Provider
+  //3. subscriber = useContext = useContext(context)
+  const theme1 = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
 
   return (
-    <div className="App">
-      <nav>
-        <ul>
-          {/* Link change page without refresh */}
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/products">ProductList</Link></li>
-          <li><Link to="/add-color">AddColor</Link></li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/products/:productid" element={<ProductDetails />} />
+    <ThemeProvider theme={theme1}>
+      <CssBaseline />
+      <div className="App">
+        <AppBar position="static">
+          <Toolbar>
+            <Button onClick={() => navigate("/")} color="inherit">Home</Button>
+            <Button onClick={() => navigate("/products")} color="inherit">ProductList</Button>
+            <Button onClick={() => navigate("/add-color")} color="inherit">AddColor</Button>
 
-        <Route path="/add-color" element={<AddColor />} />
-      </Routes>
-    </div>
+            <Button onClick={() => navigate("/context")} color="inherit">ExampleContext</Button>
+
+
+            <Button onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit"
+              endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
+              {mode === "light" ? "dark" : "light"} Mode</Button>
+
+
+
+            {/* <nav>
+          <ul>
+            Link change page without refresh
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/products">ProductList</Link></li>
+            <li><Link to="/add-color">AddColor</Link></li>
+          </ul>
+        </nav> */}
+
+          </Toolbar>
+        </AppBar>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList productList={productList} />} />
+          <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
+
+          <Route path="/add-color" element={<AddColor />} />
+          <Route path="/context" element={<ExampleContext />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 
 }
 
-function ProductDetails() {
-  const { productid } = useParams()
-  return (
-    <div>ProductDetails - {productid}</div>
-  )
-}
-
-
-function Home() {
-  return (
-    <h1>Welcome to Product Home Page</h1>
-  )
-}
 

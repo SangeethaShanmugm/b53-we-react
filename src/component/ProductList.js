@@ -1,8 +1,7 @@
 import { Product } from "./Product";
 import { INITIAL_PRODUCT_LIST } from "../App";
 
-export function ProductList() {
-  const productList = INITIAL_PRODUCT_LIST;
+export function ProductList({ productList }) {
   return (
     <div className="product-list">
       {productList.map((pd, index) => (
