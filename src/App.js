@@ -13,7 +13,9 @@ import Button from '@mui/material/Button';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ExampleContext from "./component/context/ExampleContext";
-
+import { Ref } from "./component/useRef_useReducer/Ref"
+import Reducer from "./component/useRef_useReducer/Reducer";
+import TicTacToe from "./component/TicTacToe";
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -125,7 +127,8 @@ export default function App() {
             <Button onClick={() => navigate("/add-color")} color="inherit">AddColor</Button>
 
             <Button onClick={() => navigate("/context")} color="inherit">ExampleContext</Button>
-
+            <Button onClick={() => navigate("/ref")} color="inherit">Ref</Button>
+            <Button onClick={() => navigate("/tictactoe")} color="inherit">TicTacToe</Button>
 
             <Button onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit"
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
@@ -152,6 +155,8 @@ export default function App() {
 
           <Route path="/add-color" element={<AddColor />} />
           <Route path="/context" element={<ExampleContext />} />
+          <Route path="/ref" element={<Reducer />} />
+          <Route path="/tictactoe" element={<TicTacToe />} />
         </Routes>
       </div>
     </ThemeProvider>

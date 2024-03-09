@@ -1,13 +1,14 @@
 import React from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { ThemeContent } from "./ThemeContent";
+import { ThemeContextProvider } from "./ThemeContextProvider";
 
 function ExampleContext() {
     return (
-        <div>
+        <ThemeContextProvider>
             <ThemeToggle />
             <ThemeContent />
-        </div>
+        </ThemeContextProvider>
     );
 }
 
