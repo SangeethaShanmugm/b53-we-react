@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { AddColor } from "./component/AddColor";
 import "./App.css";
-import { Routes, Route, Link, useNavigate } from "react-router-dom"
+import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom"
 import { ProductList } from "./component/ProductList"
 import { Home } from "./component/Home";
 import { ProductDetails } from "./component/ProductDetails";
@@ -157,6 +157,12 @@ export default function App() {
           <Route path="/context" element={<ExampleContext />} />
           <Route path="/ref" element={<Reducer />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
+
+          {/* redirect */}
+          <Route path="/items" element={<Navigate replace to="/products" />} />
+
+          <Route path="*" element={<NotFoundPage />} />
+
         </Routes>
       </div>
     </ThemeProvider>
@@ -164,4 +170,12 @@ export default function App() {
 
 }
 
+
+function NotFoundPage() {
+  return (
+    <div>
+      <img src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" alt="404notfound" />
+    </div>
+  )
+}
 
