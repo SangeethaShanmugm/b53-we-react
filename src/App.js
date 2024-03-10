@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { AddColor } from "./component/AddColor";
 import "./App.css";
 import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom"
@@ -16,6 +16,7 @@ import ExampleContext from "./component/context/ExampleContext";
 import { Ref } from "./component/useRef_useReducer/Ref"
 import Reducer from "./component/useRef_useReducer/Reducer";
 import TicTacToe from "./component/TicTacToe";
+import { AddProduct } from "./component/AddProduct"
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -102,7 +103,8 @@ export const INITIAL_PRODUCT_LIST = [
 
 export default function App() {
   //lifting the state up from child to parent => lifted from child to parent
-  const productList = INITIAL_PRODUCT_LIST;
+  const [productList, setProductList] = useState([]);
+
   const navigate = useNavigate()
   const [mode, setMode] = useState("light")
 
@@ -115,6 +117,13 @@ export default function App() {
     },
   });
 
+  useEffect(() => {
+    fetch("https://659e6ba547ae28b0bd35caec.mockapi.io/products")
+      .then((res) => res.json())
+      .then((data) => setProductList(data))
+  }, [])
+
+
 
   return (
     <ThemeProvider theme={theme1}>
@@ -124,6 +133,8 @@ export default function App() {
           <Toolbar>
             <Button onClick={() => navigate("/")} color="inherit">Home</Button>
             <Button onClick={() => navigate("/products")} color="inherit">ProductList</Button>
+            <Button onClick={() => navigate("/products/add")} color="inherit">AddProduct</Button>
+
             <Button onClick={() => navigate("/add-color")} color="inherit">AddColor</Button>
 
             <Button onClick={() => navigate("/context")} color="inherit">ExampleContext</Button>
@@ -152,6 +163,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList productList={productList} />} />
           <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
+          <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
 
           <Route path="/add-color" element={<AddColor />} />
           <Route path="/context" element={<ExampleContext />} />

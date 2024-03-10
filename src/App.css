@@ -58,3 +58,11 @@
   height: 10rem;
   cursor: pointer;
 }
+
+.add-product {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

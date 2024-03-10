@@ -25,3 +25,8 @@ export function AddColor() {
     </div>
   );
 }
+
+//Task  => 15mins
+// AddProduct => component
+// /product/add => AddProduct
+// 5 input field + 1 button
