@@ -17,6 +17,8 @@ import { Ref } from "./component/useRef_useReducer/Ref"
 import Reducer from "./component/useRef_useReducer/Reducer";
 import TicTacToe from "./component/TicTacToe";
 import { AddProduct } from "./component/AddProduct"
+import LifeCycleA from "./component/ClassComponent/LifeCycleA";
+import { API } from "./global";
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -103,6 +105,7 @@ export const INITIAL_PRODUCT_LIST = [
 
 export default function App() {
   //lifting the state up from child to parent => lifted from child to parent
+
   const [productList, setProductList] = useState([]);
 
   const navigate = useNavigate()
@@ -117,11 +120,7 @@ export default function App() {
     },
   });
 
-  useEffect(() => {
-    fetch("https://659e6ba547ae28b0bd35caec.mockapi.io/products")
-      .then((res) => res.json())
-      .then((data) => setProductList(data))
-  }, [])
+
 
 
 
@@ -140,6 +139,8 @@ export default function App() {
             <Button onClick={() => navigate("/context")} color="inherit">ExampleContext</Button>
             <Button onClick={() => navigate("/ref")} color="inherit">Ref</Button>
             <Button onClick={() => navigate("/tictactoe")} color="inherit">TicTacToe</Button>
+            <Button onClick={() => navigate("/class")} color="inherit">Class</Button>
+
 
             <Button onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit"
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
@@ -161,14 +162,15 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList productList={productList} />} />
-          <Route path="/products/:productid" element={<ProductDetails productList={productList} />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:productid" element={<ProductDetails />} />
           <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
 
           <Route path="/add-color" element={<AddColor />} />
           <Route path="/context" element={<ExampleContext />} />
           <Route path="/ref" element={<Reducer />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
+          <Route path="/class" element={<LifeCycleA />} />
 
           {/* redirect */}
           <Route path="/items" element={<Navigate replace to="/products" />} />
