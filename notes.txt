@@ -53,3 +53,6 @@ state of mind- currently in mind
   // console.log(user)
 
   
+
+  StateFull component = class component
+  StateLess Component = function component
