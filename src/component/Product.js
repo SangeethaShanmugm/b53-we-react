@@ -8,7 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import Button from '@mui/material/Button';
 
 
-export function Product({ product, id, deleteButton }) {
+export function Product({ product, id, deleteButton, editButton }) {
   // true  => visible => block
   // false => hide => none
   const [show, setShow] = useState(true);
@@ -66,7 +66,7 @@ export function Product({ product, id, deleteButton }) {
       </div>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Counter />
-        {deleteButton}
+        {deleteButton} {editButton}
       </div>
     </div>
   );

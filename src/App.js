@@ -19,6 +19,8 @@ import TicTacToe from "./component/TicTacToe";
 import { AddProduct } from "./component/AddProduct"
 import LifeCycleA from "./component/ClassComponent/LifeCycleA";
 import { API } from "./global";
+import { NotFoundPage } from "./component/NotFoundPage";
+import { EditProduct } from "./component/EditProduct";
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -106,7 +108,7 @@ export const INITIAL_PRODUCT_LIST = [
 export default function App() {
   //lifting the state up from child to parent => lifted from child to parent
 
-  const [productList, setProductList] = useState([]);
+  // const [productList, setProductList] = useState([]);
 
   const navigate = useNavigate()
   const [mode, setMode] = useState("light")
@@ -164,7 +166,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:productid" element={<ProductDetails />} />
-          <Route path="/products/add" element={<AddProduct productList={productList} setProductList={setProductList} />} />
+          <Route path="/products/add" element={<AddProduct />} />
+          <Route path="/products/edit/:productid" element={<EditProduct />} />
 
           <Route path="/add-color" element={<AddColor />} />
           <Route path="/context" element={<ExampleContext />} />
@@ -184,12 +187,4 @@ export default function App() {
 
 }
 
-
-function NotFoundPage() {
-  return (
-    <div>
-      <img src="https://freefrontend.com/assets/img/html-funny-404-pages/CodePen-404-Page.gif" alt="404notfound" />
-    </div>
-  )
-}
 
