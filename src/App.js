@@ -21,6 +21,7 @@ import LifeCycleA from "./component/ClassComponent/LifeCycleA";
 import { API } from "./global";
 import { NotFoundPage } from "./component/NotFoundPage";
 import { EditProduct } from "./component/EditProduct";
+import Redux from "./component/Redux/Redux";
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -142,7 +143,8 @@ export default function App() {
             <Button onClick={() => navigate("/ref")} color="inherit">Ref</Button>
             <Button onClick={() => navigate("/tictactoe")} color="inherit">TicTacToe</Button>
             <Button onClick={() => navigate("/class")} color="inherit">Class</Button>
-
+            {/* redux */}
+            <Button onClick={() => navigate("/redux")} color="inherit">redux</Button>
 
             <Button onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit"
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
@@ -174,6 +176,8 @@ export default function App() {
           <Route path="/ref" element={<Reducer />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/class" element={<LifeCycleA />} />
+
+          <Route path="/redux" element={<Redux />} />
 
           {/* redirect */}
           <Route path="/items" element={<Navigate replace to="/products" />} />
