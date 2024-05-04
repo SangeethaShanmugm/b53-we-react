@@ -1,1 +1,1 @@
-export const API = "https://659e6ba547ae28b0bd35caec.mockapi.io/product"
+export const API = "https://b53we-node.onrender.com/products"
