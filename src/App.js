@@ -22,6 +22,7 @@ import { API } from "./global";
 import { NotFoundPage } from "./component/NotFoundPage";
 import { EditProduct } from "./component/EditProduct";
 import Redux from "./component/Redux/Redux";
+import Hooks from "./component/Hooks/Hooks";
 
 export const INITIAL_PRODUCT_LIST = [
   {
@@ -146,6 +147,10 @@ export default function App() {
             {/* redux */}
             <Button onClick={() => navigate("/redux")} color="inherit">redux</Button>
 
+            <Button onClick={() => navigate("/hooks")} color="inherit">Hooks Revision</Button>
+
+
+
             <Button onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit"
               endIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}>
               {mode === "light" ? "dark" : "light"} Mode</Button>
@@ -178,6 +183,9 @@ export default function App() {
           <Route path="/class" element={<LifeCycleA />} />
 
           <Route path="/redux" element={<Redux />} />
+
+          <Route path="/hooks" element={<Hooks />} />
+
 
           {/* redirect */}
           <Route path="/items" element={<Navigate replace to="/products" />} />
